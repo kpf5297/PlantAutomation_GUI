@@ -29,7 +29,7 @@ The Plant Care System GUI is a graphical user interface application developed fo
 
 1. **Clone the Repository:**
     ```bash
-    git clone https://github.com/your-username/plant-care-system-gui.git
+    git clone https://github.com/kpf5297/plant-care-system-gui.git
     cd plant-care-system-gui
     ```
 
