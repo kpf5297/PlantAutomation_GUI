@@ -88,22 +88,25 @@ PlantCareSystemGUI::PlantCareSystemGUI(QWidget *parent)
 
         // Control the system if manual checboxes are not checked
         
-        // Top shelf
+        // Top shelf automatic light control method call
         if (!ui->top_light_checkBox->isChecked())
         {
             topShelfControl.controlLight(working_time);
         }
 
+        // Top shelf automatic water pump control method call
         if (!ui->top_pump_checkBox->isChecked() && ui->top_pump_enable_checkbox->isChecked())
         {
             topShelfControl.controlWaterPump(working_time);
         }
 
+        // Bottom shelf automatic light control method call
         if (!ui->bottom_light_checkbox->isChecked())
         {
             bottomShelfControl.controlLight(working_time);
         }
 
+        // Bottom shelf automatic water pump control method call
         if (!ui->bottom_pump_checkBox->isChecked() && ui->bott_pump_enable_checkbox->isChecked())
         {
             bottomShelfControl.controlWaterPump(working_time);
@@ -327,6 +330,7 @@ void PlantCareSystemGUI::update_gui_values() {
         std::cout << "dailyOnTime: " << std::put_time(std::localtime(&dailyOnTime), "%c") << std::endl;
         std::cout << "dailyOffTime: " << std::put_time(std::localtime(&dailyOffTime), "%c") << std::endl;
 
+        // Set the initial light on and off times
         ui->top_light_on_time->setDateTime(QDateTime::fromTime_t(dailyOnTime));
         ui->top_light_off_time->setDateTime(QDateTime::fromTime_t(dailyOffTime));
         ui->bott_light_on_time->setDateTime(QDateTime::fromTime_t(dailyOnTime));
@@ -349,7 +353,7 @@ void PlantCareSystemGUI::update_gui_values() {
 
 
     // Scroll to the bottom of the log
-    ui->log_listWidget->scrollToBottom();
+    // ui->log_listWidget->scrollToBottom();
 }
 
 /**

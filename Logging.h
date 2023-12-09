@@ -8,8 +8,6 @@
 
 #pragma once
 
-
-
 /**
  * @brief The Logger class provides a simple logging mechanism.
 */

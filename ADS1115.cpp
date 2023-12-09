@@ -68,14 +68,17 @@ ADS1115::~ADS1115() {
  */
 int16_t ADS1115::read(Mux mux, Pga pga, Mode mode, DataRate dataRate) {
     uint16_t config = 0x8000; // Bit 15 needs to be set to start a conversion
-    config |= static_cast<uint16_t>(mux);
-    config |= static_cast<uint16_t>(pga);
-    config |= static_cast<uint16_t>(mode);
-    config |= static_cast<uint16_t>(dataRate);
 
-    m_buf[0] = 1; // Configuration register is 1
-    m_buf[1] = config >> 8;
-    m_buf[2] = config & 0xFF;
+    // Build the configuration word
+    config |= static_cast<uint16_t>(mux);       // Set the mux
+    config |= static_cast<uint16_t>(pga);       // Set the pga
+    config |= static_cast<uint16_t>(mode);      // Set the mode
+    config |= static_cast<uint16_t>(dataRate);  // Set the data rate
+
+    // Split the configuration into two bytes
+    m_buf[0] = 1;                               // Configuration register is 1
+    m_buf[1] = config >> 8;                     // MSB
+    m_buf[2] = config & 0xFF;                   // LSB
 
     // Write the configuration
     if (::write(m_fd, m_buf, 3) != 3) {

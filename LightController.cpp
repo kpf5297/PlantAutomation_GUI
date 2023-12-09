@@ -17,8 +17,6 @@ LightController::LightController(int pin, const time_t& dailyOn, const time_t& d
     // Set light status
     on = false;
 
-
-
     // Open GPIO chip
     chip = gpiod_chip_open("/dev/gpiochip0");
 
